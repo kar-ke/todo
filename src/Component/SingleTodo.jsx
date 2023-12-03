@@ -4,13 +4,14 @@ import { IoClose } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 
-const SingleTodo = ({ task }) => {
+const SingleTodo = ({ task, handleDelete }) => {
 	const [isDone, setIsdone] = useState(false);
 
 	const handleCheck = (e) => {
 		setIsdone(!isDone);
 	};
 
+    
 	return (
 		<div className="flex flex-row items-center justify-between text-white hover:text-black hover:font-semibold bg-black hover:bg-purple-500">
 			<div className="flex flex-row items-center ">
@@ -38,7 +39,7 @@ const SingleTodo = ({ task }) => {
 			</div>
 			<div className="flex flex-row items-center gap-3 ">
 				<FiEdit3 />
-				<IoClose className="mr-[1rem] text-xl" />
+				<IoClose onClick={() => handleDelete(task)} className="mr-[1rem] text-xl" />
 			</div>
 		</div>
 	);

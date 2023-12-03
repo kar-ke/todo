@@ -22,7 +22,7 @@ function App() {
         <input type="text" onChange={handleChange} placeholder="Add task" className="outline outline-1 py-2 px-4 w-full"/>
         <button type="button" onClick={handleClick} className="bg-black hover:bg-purple-500 text-white px-4 py-2">Add</button>
       </div>
-      <Todos todo={todos}/>
+      <Todos todo={todos} setTodos={setTodos}/>
 		</div>
 	);
 }
