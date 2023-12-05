@@ -4,42 +4,71 @@ import { IoClose } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 
-const SingleTodo = ({ task, handleDelete }) => {
+const SingleTodo = ({
+    todo,
+	handleDelete,
+	handleChange,
+	setTodos,
+    task,
+	todos,
+}) => {
 	const [isDone, setIsdone] = useState(false);
+	const [isEdit, setIsedit] = useState(false);
 
-	const handleCheck = (e) => {
-		setIsdone(!isDone);
+	const handleDone = () => {
+		setIsdone(true);
 	};
 
-    
+	const handleEdit = () => {
+		setIsedit(true);
+	};
+
+	const handleClick = (todo) => {
+		setIsedit(false);
+		if (task !== null) {
+			setTodos(
+				todos.map((tod) => {
+					if (tod.task === todo.task) {
+						tod.task = task;
+					}
+					return tod;
+				})
+			);
+		}
+		setTask(null);
+	};
+
 	return (
-		<div className="flex flex-row items-center justify-between text-white hover:text-black hover:font-semibold bg-black hover:bg-purple-500">
+		<div className="flex flex-row items-center justify-between text-white   bg-black ">
 			<div className="flex flex-row items-center ">
 				{isDone === true ? (
-					<>
-						<FaCheckCircle
-							className="ml-[1rem] "
-							onClick={handleCheck}
-						/>
-						<s className=" py-2 ml-[1rem]" onClick={handleCheck}>
-							{task}
-						</s>
-					</>
+					<s>
+						<b className="">{todo.task}</b>
+					</s>
+				) : isEdit === false ? (
+					<h4 className="py-2 mx-4">{todo.task}</h4>
 				) : (
-					<>
-						<MdOutlineRadioButtonUnchecked
-							className="ml-[1rem] "
-							onClick={handleCheck}
+					<div className="text-black py-2  ">
+						<input
+							className="mx-4 px-2 rounded"
+							type="text"
+							defaultValue={todo.task}
+							onChange={(e) => handleChange(e)}
 						/>
-						<h5 className=" py-2 ml-[1rem]" onClick={handleCheck}>
-							{task}
-						</h5>
-					</>
+						<button
+							className="bg-white px-2 rounded"
+							onClick={() => handleClick(todo)}>
+							Edit
+						</button>
+					</div>
 				)}
 			</div>
 			<div className="flex flex-row items-center gap-3 ">
-				<FiEdit3 />
-				<IoClose onClick={() => handleDelete(task)} className="mr-[1rem] text-xl" />
+				<FiEdit3 onClick={handleEdit} />
+				<IoClose
+					onClick={() => handleDelete(todo)}
+					className="mr-[1rem] text-xl"
+				/>
 			</div>
 		</div>
 	);

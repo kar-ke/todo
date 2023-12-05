@@ -1,16 +1,30 @@
-import React from 'react'
-import SingleTodo from './SingleTodo'
+import React from "react";
+import SingleTodo from "./SingleTodo";
 
-const Todos = ({todo, setTodos}) => {
+const Todos = ({ todos, setTodos, task, setTask }) => {
+	const handleDelete = (todo) => {
+		setTodos(todos.filter((tasks) => tasks.task !== todo.task));
+	};
 
-const handleDelete = (task) => {
-    setTodos(todo.filter((val) => val.task !== task))
-}
-  return (
-    <div className='flex flex-col gap-4  mt-10'>
-        {todo.map((todo, index) => <SingleTodo task={todo.task} key={index}  handleDelete={handleDelete}/>)}
-    </div>
-  )
-}
+	const handleChange = (e) => {
+		setTask(e.target.value);
+	};
 
-export default Todos
+	return (
+		<div className="flex flex-col gap-4  mt-10">
+			{todos.map((todo, index) => (
+				<SingleTodo
+					key={index}
+					todo={todo}
+					handleDelete={handleDelete}
+					handleChange={handleChange}
+					setTodos={setTodos}
+					task={task}
+					todos={todos}
+				/>
+			))}
+		</div>
+	);
+};
+
+export default Todos;
