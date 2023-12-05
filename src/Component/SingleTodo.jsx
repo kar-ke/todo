@@ -16,7 +16,7 @@ const SingleTodo = ({
 	const [isEdit, setIsedit] = useState(false);
 
 	const handleDone = () => {
-		setIsdone(true);
+		setIsdone(!isDone);
 	};
 
 	const handleEdit = () => {
@@ -43,10 +43,14 @@ const SingleTodo = ({
 			<div className="flex flex-row items-center ">
 				{isDone === true ? (
 					<s>
-						<b className="">{todo.task}</b>
+						<p className="py-2 mx-4" onClick={handleDone}>
+							{todo.task}
+						</p>
 					</s>
 				) : isEdit === false ? (
-					<h4 className="py-2 mx-4">{todo.task}</h4>
+					<h4 className="py-2 mx-4" onClick={handleDone}>
+						{todo.task}
+					</h4>
 				) : (
 					<div className="text-black py-2  ">
 						<input
