@@ -36,7 +36,7 @@ function App() {
 				<button
 					type="button"
 					onClick={handleClick}
-					className="bg-black hover:bg-purple-500 text-white px-4 py-2">
+					className="bg-black hover:bg-purple-700 text-white px-4 py-2">
 					Add
 				</button>
 			</div>

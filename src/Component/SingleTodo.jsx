@@ -39,18 +39,22 @@ const SingleTodo = ({
 	};
 
 	return (
-		<div className="flex flex-row items-center justify-between text-white   bg-black ">
-			<div className="flex flex-row items-center ">
+		<div className="flex flex-row items-center justify-between text-white   bg-black outline outline-1 hover:bg-purple-700  ">
+			<div className="flex flex-row items-center mx-4 ">
 				{isDone === true ? (
-					<s>
-						<p className="py-2 mx-4" onClick={handleDone}>
+					<s className="flex flex-row items-center">
+						<FaCheckCircle />
+						<p className="py-2 mx-3 cursor-pointer" onClick={handleDone}>
 							{todo.task}
 						</p>
 					</s>
 				) : isEdit === false ? (
-					<h4 className="py-2 mx-4" onClick={handleDone}>
+					<>
+					<MdOutlineRadioButtonUnchecked />
+					<h4 className="py-2 mx-3 cursor-pointer" onClick={handleDone}>
 						{todo.task}
 					</h4>
+					</>
 				) : (
 					<div className="text-black py-2  ">
 						<input
