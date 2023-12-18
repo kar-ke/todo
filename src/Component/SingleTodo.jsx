@@ -5,11 +5,11 @@ import { FaCheckCircle } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 
 const SingleTodo = ({
-    todo,
+	todo,
 	handleDelete,
 	handleChange,
 	setTodos,
-    task,
+	task,
 	todos,
 }) => {
 	const [isDone, setIsdone] = useState(false);
@@ -42,18 +42,24 @@ const SingleTodo = ({
 		<div className="flex flex-row items-center justify-between text-white   bg-black outline outline-1 hover:bg-purple-700  ">
 			<div className="flex flex-row items-center mx-4 ">
 				{isDone === true ? (
-					<s className="flex flex-row items-center">
+					<s
+						className="flex flex-row items-center"
+						onClick={handleDone}>
 						<FaCheckCircle />
-						<p className="py-2 mx-3 cursor-pointer" onClick={handleDone}>
+						<p
+							className="py-2 mx-3 cursor-pointer"
+							onClick={handleDone}>
 							{todo.task}
 						</p>
 					</s>
 				) : isEdit === false ? (
 					<>
-					<MdOutlineRadioButtonUnchecked />
-					<h4 className="py-2 mx-3 cursor-pointer" onClick={handleDone}>
-						{todo.task}
-					</h4>
+						<MdOutlineRadioButtonUnchecked onClick={handleDone} />
+						<h4
+							className="py-2 mx-3 cursor-pointer"
+							onClick={handleDone}>
+							{todo.task}
+						</h4>
 					</>
 				) : (
 					<div className="text-black py-2  ">
